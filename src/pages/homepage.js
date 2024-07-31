@@ -4,26 +4,21 @@ import styled from "styled-components";
 import PromotionalText from "../components/promotionaltext";
 
 const Container = styled.div`
-  width: auto;
-  height: 634px;
-  border: 1px solid;
-  background: url("/waqas.jpg") no-repeat center center;
+  width: 720px;
+  height: 603px;
+  border: 13px solid #f2f0f1;
+  background: url("/drazapp1.jpg") no-repeat center center;
   background-size: contain;
   display: flex;
+  margin-left: 122px;
   align-items: center;
   justify-content: center;
   color: white;
-  position: relative;
 `;
 
-const OverlayText = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+const Text = styled.div`
+  margin-top: 60px;
+  width: 720px;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 `;
@@ -36,20 +31,33 @@ const Headingname = styled.h1`
   font-size: 90px;
   text-align: center;
 `;
-
+const Container1 = styled.div`
+  display: flex;
+  height: 643px;
+  background-color: #f2f0f1;
+`;
 const Homepage = () => {
   return (
     <>
       <PromotionalText />
 
       <Topbar />
-      <Container>
-        <OverlayText>
+      <Container1>
+        <Text>
           <Headingname>FIND CLOTHES</Headingname>
           <Headingname> THAT MATCH</Headingname>
           <Headingname>YOUR STYLE</Headingname>
-        </OverlayText>
-      </Container>
+        </Text>
+        <Container></Container>
+      </Container1>
+
+      {/*  <Container>
+        <Text>
+          <Headingname>FIND CLOTHES</Headingname>
+          <Headingname> THAT MATCH</Headingname>
+          <Headingname>YOUR STYLE</Headingname>
+        </Text>
+      </Container> */}
     </>
   );
 };
