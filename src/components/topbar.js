@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import SearchIcon from "@mui/icons-material/Search";
@@ -115,6 +115,7 @@ const Topbar = () => {
     (total, item) => total + item.quantity,
     0
   );
+  const location = useLocation();
 
   return (
     <TopContainer>
@@ -134,7 +135,7 @@ const Topbar = () => {
           <CartIconContainer>
             <Link to="/cart">
               <ShoppingCartIcon />
-              {totalQuantity > 0 && (
+              {location.pathname === "/cart" && totalQuantity > 0 && (
                 <CartQuantity>{totalQuantity}</CartQuantity>
               )}
             </Link>
