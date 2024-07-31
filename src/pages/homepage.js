@@ -1,6 +1,7 @@
 import React from "react";
 import Topbar from "../components/topbar";
 import styled from "styled-components";
+import PromotionalText from "../components/promotionaltext";
 
 const Container = styled.div`
   width: auto;
@@ -17,9 +18,9 @@ const Container = styled.div`
 
 const OverlayText = styled.div`
   position: absolute;
-  left: 10px; /* Adjust as needed to position closer/farther from the left */
+  left: 10px;
   top: 50%;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   text-align: center;
   font-size: 24px;
   font-weight: bold;
@@ -30,15 +31,17 @@ const OverlayText = styled.div`
 const Headingname = styled.h1`
   font-weight: bold;
   margin: 0px;
-  color: black; /* Updated color */
+  color: black;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   font-size: 90px;
-  text-align: center; /* Ensure text inside is center-aligned */
+  text-align: center;
 `;
 
 const Homepage = () => {
   return (
     <>
+      <PromotionalText />
+
       <Topbar />
       <Container>
         <OverlayText>

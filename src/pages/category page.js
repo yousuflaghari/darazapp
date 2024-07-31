@@ -2,29 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import Topbar from "../components/topbar";
 import Item from "../components/item";
-import { useGetWomensDressesQuery } from "../actions";
-
+import { useGetWomensDressesQuery } from "../api";
+import PromotionalText from "../components/promotionaltext";
 const Categorycontainer = styled.div`
-  height: 700px;
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0px 100px 0px 100px;
 `;
 
 const GridContainer = styled.div`
-  width: 750px;
-  height: 600px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  padding: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
 `;
-
+const Heading = styled.h1`
+  width: 403px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const Categorypage = () => {
   const { data, error, isLoading } = useGetWomensDressesQuery();
-  console.log(data);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -33,17 +36,19 @@ const Categorypage = () => {
 
   return (
     <>
+      <PromotionalText />
       <Topbar />
       <Categorycontainer>
-        <h1>Categorypage</h1>
+        <Heading>NEW ARRIVALS</Heading>
         <GridContainer>
-          {products.map((product, index) => (
+          {products.map((product) => (
             <Item
-              key={index}
+              key={product.id}
               id={product.id}
               name={product.title}
               image={product.images[0]}
               price={product.price}
+              rating={product.rating}
             />
           ))}
         </GridContainer>
