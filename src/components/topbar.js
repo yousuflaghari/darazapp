@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSelector } from "react-redux";
 
 const TopbarContainer = styled.div`
   display: flex;
@@ -78,18 +79,43 @@ const IconsContainer = styled.div`
   justify-content: flex-end;
   gap: 20px;
   margin-left: 20px;
+  position: relative;
 `;
 
 const TopContainer = styled.div`
   margin-bottom: 30px;
 `;
+
 const Borderline = styled.div`
   border-bottom: 1px solid #ccc;
   margin-top: 24px;
   margin-left: 170px;
   width: 1240px;
 `;
+
+const CartQuantity = styled.span`
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.6rem;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+`;
+
+const CartIconContainer = styled.div`
+  position: relative;
+`;
+
 const Topbar = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartItemsArray = Object.values(cartItems);
+  const totalQuantity = cartItemsArray.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <TopContainer>
       <TopbarContainer>
@@ -105,9 +131,14 @@ const Topbar = () => {
           <SearchInput placeholder="Search all products" />
         </SearchContainer>
         <IconsContainer>
-          <Link to="/cart">
-            <ShoppingCartIcon />
-          </Link>
+          <CartIconContainer>
+            <Link to="/cart">
+              <ShoppingCartIcon />
+              {totalQuantity > 0 && (
+                <CartQuantity>{totalQuantity}</CartQuantity>
+              )}
+            </Link>
+          </CartIconContainer>
           <AccountCircleRoundedIcon />
         </IconsContainer>
       </TopbarContainer>

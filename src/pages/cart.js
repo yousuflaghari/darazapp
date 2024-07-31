@@ -104,9 +104,7 @@ const Productscontainer = styled.div`
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  console.log(cartItems);
   const cartItemsArray = Object.values(cartItems);
-  console.log("cartItems", cartItemsArray);
 
   const calculateSubtotal = (cartItemsArray) => {
     return cartItemsArray.reduce(
@@ -115,15 +113,19 @@ const Cart = () => {
     );
   };
 
+  const calculateTotalQuantity = (cartItemsArray) => {
+    return cartItemsArray.reduce((total, item) => total + item.quantity, 0);
+  };
+
   const subtotal = calculateSubtotal(cartItemsArray);
   const discount = subtotal * 0.4;
   const deliveryFee = 50;
   const total = subtotal - discount + deliveryFee;
-
+  const totalQuantity = calculateTotalQuantity(cartItemsArray);
+  console.log(totalQuantity, "hello");
   return (
     <>
       <PromotionalText />
-
       <Topbar />
       <CartContainer>
         <Heading>Your Cart</Heading>
